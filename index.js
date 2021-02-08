@@ -143,6 +143,11 @@ function mountSwagger(loopbackApplication, swaggerApp, opts) {
   });
 
   function rebuildSwaggerObject() {
-    swaggerObject = createSwaggerObject(loopbackApplication, opts);
+    if(this.timeoutID){
+      clearTimeout(this.timeoutID)
+    }
+    this.timeoutID = setTimeout(() => {
+      swaggerObject = createSwaggerObject(loopbackApplication, opts);
+    }, 1000);
   }
 }
